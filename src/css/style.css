@@ -1,0 +1,135 @@
+:root {
+    --font-body: Arial, Helvetica, sans-serif;
+    --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    /* colors */
+    --primary-color: #0e1091;
+    --secondary-color: #1998b8;
+    --light-grey: #d0d0d0;
+    --dark-grey: #303030;
+
+    /* sizes */
+    --font-base: 18px;
+    --small-font: 0.8em;
+    --large-font: 1.2em;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: var(--font-body);
+    font-size: var(--font-base);
+    color: var(--dark-grey);
+    background: linear-gradient(to right, #1e90db, #49d6ca,#a3dee4,#49d6ca,#1e90db);
+}
+
+
+header {
+    padding: 1.5rem;
+}
+
+p {
+    padding: 0.75rem;
+}
+
+.logo {
+    line-height: 60px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    font-size: 50px;
+    text-align: right;
+    font-family: var(--font-headline);
+    gap: 20px;
+     
+    & img {
+            width: 60px;
+            height: 60px;
+        }
+    
+    & a {
+         text-decoration: none;
+        color: var(--light-grey);
+        }
+}
+
+.highlight {
+    color: var(--primary-color);
+}
+
+
+/* carrousel*/
+.carousel-container {
+    height: 400px;
+}
+#carousel-container{
+    height: 600px;
+    overflow: hidden;
+}
+.itemcarousel{
+    height: 100%;
+    position: relative;
+}
+.targetcarousel{
+    background-color: var(--light-grey);
+    height: 100%;
+}
+#targetcarousel-1{
+    background-color: var(--primary-color);
+}
+#targetcarousel-2{
+    background-color: var(--secondary-color);
+}
+.arrows{
+    height: 100%;
+    position:absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+a{
+    text-decoration: none;
+    color:var(--primary-color);
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+/*Call to action */
+.cta {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light-grey);
+
+}
+
+.cta h2 {
+    font-family: var(--font-body);
+    color: var(--dark-grey);
+    margin-top: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.cta p {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    text-align: center;
+    font-size: medium;
+    font-family: var(--font-body);
+}
+
+
+footer {
+    font-size: var(--small-font);
+    padding: 1em;
+    font-family:cursive;
+    color: var(--primary-color);
+    text-align: center;
+}
