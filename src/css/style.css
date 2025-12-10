@@ -2,8 +2,8 @@
     --font-body: Arial, Helvetica, sans-serif;
     --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
     /* colors */
-    --primary-color: #0e1091;
-    --secondary-color: #1998b8;
+    --primary-color: #13145c;
+    --secondary-color: #77d1e7;
     --light-grey: #d0d0d0;
     --dark-grey: #303030;
 
@@ -25,7 +25,7 @@ body {
     background: linear-gradient(to right, #1e90db, #49d6ca,#a3dee4,#49d6ca,#1e90db);
 }
 
-
+/* header */
 header {
     padding: 1.5rem;
 }
@@ -105,24 +105,56 @@ img{
     display: flex;
     flex-direction: column;
     background-color: var(--light-grey);
+    padding: 20px;
 
+    & h2 {
+        font-family: var(--font-body);
+        color: var(--dark-grey);
+        margin-top: 20px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    & p {
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+        font-weight: 700;
+        text-align: center;
+        font-size: large;
+        font-family: var(--font-body);
+    }
 }
+/* Digimon and Pokemon world*/
+.digipokeworld{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 60px;
+    gap: 120px;
 
-.cta h2 {
-    font-family: var(--font-body);
-    color: var(--dark-grey);
-    margin-top: 20px;
-    margin-bottom: 15px;
-    text-align: center;
+    & a{
+        border-radius: 30px;
+        padding: 15px;
+        color: var(--primary-color);
+        font-family:cursive ;
+        animation: colorChange 10s infinite;
+    }
 }
+@keyframes colorChange {
+    0% {
+        background-color: var(--secondary-color);
+        color: var(--light-grey);
+    }
 
-.cta p {
-    margin-bottom: 1rem;
-    color: var(--primary-color);
-    font-weight: 500;
-    text-align: center;
-    font-size: medium;
-    font-family: var(--font-body);
+    50% {
+        background-color: var(--primary-color);
+        color: var(--light-grey);
+    }
+
+    100% {
+        background-color: var(--secondary-color);
+        color: var(--accent2-color);
+    }
 }
 
 
