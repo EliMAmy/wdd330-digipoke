@@ -156,7 +156,11 @@ img{
         color: var(--accent2-color);
     }
 }
-
+/* html digimon*/
+.sort-icon{
+    width: 24px;
+    height: 24px;
+}
 
 footer {
     font-size: var(--small-font);

@@ -1,5 +1,6 @@
-
-
+import displayPokemons from "./digipoke.mjs";
+const displayPoke = new displayPokemons();
+displayPoke.displayPokemons();
 
 
 document.querySelector('#app').innerHTML = `
