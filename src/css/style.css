@@ -161,7 +161,10 @@ img{
     width: 24px;
     height: 24px;
 }
-
+/*DETAILS POKEMON PAGE*/
+.back-btn,.arrow-left ,.arrow-right,.weight,.straighten{
+    width: 25px;
+}
 footer {
     font-size: var(--small-font);
     padding: 1em;
