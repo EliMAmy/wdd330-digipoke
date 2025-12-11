@@ -1,8 +1,3 @@
-import displayPokemons from "./pokemon.mjs";
-const displayPoke = new displayPokemons();
-displayPoke.displayPokemons();
-
-
 
 
 document.querySelector('#app').innerHTML = `
