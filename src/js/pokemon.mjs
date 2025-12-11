@@ -1,92 +1,105 @@
-const MAX_POKEMON = 625;
+const MAX_POKEMON = 1025;
 
 const listWrapper = document.querySelector(".list-wrapper");
 const searchInput = document.querySelector("#search-input");
 const numberFilter = document.querySelector("#number");
-const nameFilter = document.querySelector("#name");
 const notFoundMessage = document.querySelector("#not-found-message");
+const closeButton = document.querySelector(".search-close");
 
 let allPokemons = [];
+let currentIndex = 0;
+const PAGE_SIZE = 30;
+let isSearching = false;
+
 fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`)
     .then((response) => response.json())
     .then((data) => {
         allPokemons = data.results;
-        displayPokemons(allPokemons);
+        loadNextPage();
     });
-async function fetchPokemonDataBeforeRedirect(id) {
-    try {
-        const [pokemon, pokemonSpecies] = await Promise.all([fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-            .then((res) => { res.json() }
-        ),
-        fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
-            .then((res) => { res.json() }
-        ),
-        
-        ])
-        return true
-    } catch (error) {
-        console.error("Failed to fetch Pokemon Data before Redirect");
-    }
+
+function loadNextPage() {
+    if (isSearching) return;
+
+    const nextPokemons = allPokemons.slice(currentIndex, currentIndex + PAGE_SIZE);
+    displayPokemons(nextPokemons);
+
+    currentIndex += PAGE_SIZE;
 }
 
 export default function displayPokemons(pokemon) {
-    listWrapper.innerHTML = "" ;
-    
     pokemon.forEach((pokemon) => {
         const pokemonID = pokemon.url.split("/")[6];
         const listItem = document.createElement("div");
         listItem.className = "list-item";
         listItem.innerHTML = `
         <div class="number-wrap"> 
-            <p class="caption-fonts">${pokemonID}</p>
+            <p>${pokemonID}</p>
         </div>
         <div class="img-wrap">
-            <img src="https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/other/dream-world/${pokemonID}.svg" alt="${pokemon.name}/>
+            <img src="https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/other/dream-world/${pokemonID}.svg" alt="${pokemon.name} loading="lazy"/>
         </div>
         <div class="name-wrap">
-            <p class="body3-fonts">${pokemon.name}</p>
+            <p>${pokemon.name}</p>
         </div>`;
-        listItem.addEventListener("click", async () => {
+
+/*         listItem.addEventListener("click", async () => {
             const success = await fetchPokemonDataBeforeRedirect(pokemonID);
             if (success) {
                 window.location.href = `details.html?id=${pokemonID}`;
             }
-        });
+        }); */
         listWrapper.appendChild(listItem);
     });
 }
+
+window.addEventListener("scroll", () => {
+    if (isSearching) return;
+
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+        loadNextPage();
+    }
+});
+
 searchInput.addEventListener("keyup", handleSearch);
 
 function handleSearch() {
     const searchTerm = searchInput.value.toLowerCase();
-    let filteredPokemons;
+
+    if (searchTerm === "") {
+        restoreInfiniteScroll();
+        return;
+    }
+
+    isSearching = true;
+    listWrapper.innerHTML = "";
+
+    let filtered = [];
 
     if (numberFilter.checked) {
-        filteredPokemons = allPokemons.filter((pokemon) => {
+        filtered = allPokemons.filter((pokemon) => {
             const pokemonID = pokemon.url.split("/")[6];
             return pokemonID.startsWith(searchTerm);
         });
-    } else if (nameFilter.checked) {
-        filteredPokemons = allPokemons.filter((pokemon) => {
+    } else {
+        filtered = allPokemons.filter((pokemon) => {
             return pokemon.name.toLowerCase().startsWith(searchTerm)
-            
         });
-    } else {
-        filteredPokemons = allPokemons;
     }
-    displayPokemons(filteredPokemons);
+    displayPokemons(filtered);
 
-    if (filteredPokemons.length === 0) {
-        notFoundMessage.style.display = "block";
-    } else {
-        notFoundMessage.style.display = "none";
-    }
+    notFoundMessage.style.display = filtered.length === 0 ? "block" : "none";
 }
-const closeButton = document.querySelector(".search-close");
-closeButton.addEventListener("click", clearSearch);
 
-function clearSearch() {
-    searchInput.value = "";
-    displayPokemons(allPokemons);
+function restoreInfiniteScroll() {
+    isSearching = false;
+    listWrapper.innerHTML = "";
+    currentIndex = 0;
     notFoundMessage.style.display = "none";
+    loadNextPage();
 }
+
+closeButton.addEventListener("click", () => {
+    searchInput.value = "";
+    restoreInfiniteScroll();
+});
