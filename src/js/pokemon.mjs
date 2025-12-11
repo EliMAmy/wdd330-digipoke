@@ -1,4 +1,4 @@
-const MAX_POKEMON = 25;
+const MAX_POKEMON = 625;
 
 const listWrapper = document.querySelector(".list-wrapper");
 const searchInput = document.querySelector("#search-input");
@@ -81,4 +81,12 @@ function handleSearch() {
     } else {
         notFoundMessage.style.display = "none";
     }
+}
+const closeButton = document.querySelector(".search-close");
+closeButton.addEventListener("click", clearSearch);
+
+function clearSearch() {
+    searchInput.value = "";
+    displayPokemons(allPokemons);
+    notFoundMessage.style.display = "none";
 }
