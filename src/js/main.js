@@ -1,10 +1,3 @@
-import displayPokemons from "./pokemon.mjs";
-const displayPoke = new displayPokemons();
-displayPoke.displayPokemons();
-
-import displayPokemonDetails from "./pokemon-details.mjs";
-const displayPokeDetails = new displayPokemonDetails();
-displayPokeDetails.displayPokemonDetails();
 
 
 document.querySelector('#app').innerHTML = `

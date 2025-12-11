@@ -172,3 +172,107 @@ footer {
     color: var(--primary-color);
     text-align: center;
 }
+
+/*Search Bar*/
+.search-wrap {
+    margin: 30px auto;
+    width: 90%;
+    max-width: 450px;
+    background: white;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    position: relative;
+}
+
+.search-wrap svg {
+    width: 22px;
+    height: 22px;
+    color: #777;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 1rem;
+    margin-left: 10px;
+}
+
+.search-close {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+}
+
+/*Sort Filters*/
+.sort-wrapper {
+    width: 90%;
+    max-width: 450px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-grapper {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/*Digimon Grid*/
+.list-wrapper {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 15px;
+}
+
+/*Digimon Card*/
+.list-item {
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.list-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.list-item img {
+    width: 100%;
+    max-width: 110px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.number-wrap p {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.name-wrap p {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/*Not Found Message*/
+#not-found-message {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.1rem;
+    color: #ff3d57;
+    display: none;
+}
