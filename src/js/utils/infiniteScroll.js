@@ -9,10 +9,12 @@ export function setupInfiniteScroll(data, getImageUrl, getName, getId) {
     allData = data;
     loadNextPage(getImageUrl, getName, getId);
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", function(){
+        onScroll(getImageUrl, getName, getId)
+    });
 }
 
-function onScroll() {
+function onScroll(getImageUrl, getName, getId) {
     if (isSearching) return;
 
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
